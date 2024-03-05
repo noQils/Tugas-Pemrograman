@@ -6,7 +6,6 @@ import java.util.Scanner; // import java scanner
 public class OrderGenerator {
     private static final Scanner input = new Scanner(System.in); // create scanner variable called "input"
 
-
     public static void showMenu(int num){
         /*
          * function to print logo and menu list
