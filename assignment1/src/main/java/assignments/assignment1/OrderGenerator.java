@@ -261,18 +261,17 @@ public class OrderGenerator {
             showMenu(1); // print menu list
             System.out.print("Pilihan menu: ");
 
-            int pilihan = input.nextInt(); // input command
-            input.nextLine(); // clear scanner
+            String pilihan = input.nextLine(); // input command
 
-            if (pilihan == 1){ // if command input == 1, generate order
+            if (pilihan.equals("1")){ // if command input == 1, generate order
                 System.out.println("Order id " + orderInput() + " diterima!");
                 System.out.println("-------------------------------");
             }
-            else if (pilihan == 2){ // if command input == 2, generate bill
+            else if (pilihan.equals("2")){ // if command input == 2, generate bill
                 System.out.println(billInput());
                 System.out.println("-------------------------------");
             }
-            else if (pilihan == 3){ // if command input == 3, exit program
+            else if (pilihan.equals("3")){ // if command input == 3, exit program
                 System.out.println("Terima kasih telah menggunakan DepeFood!");
                 break;
             }
