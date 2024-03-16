@@ -5,3 +5,7 @@ application {
 run {
     standardInput = System.in
 }
+
+dependencies {
+    implementation project(':assignment1')
+}

@@ -1,10 +1,55 @@
-package main.java.assignments.assignment2;
+package assignments.assignment2;
+import java.util.ArrayList;
 
 public class User {
-     // TODO: tambahkan attributes yang diperlukan untuk class ini
-    public User(String nama, String nomorTelepon, String email, String lokasi, String role){
-        // TODO: buat constructor untuk class ini
+    private String namaUser;
+    private String noTelepon;
+    private String email;
+    private String lokasi;
+    private String role;
+    private ArrayList<Order> orderHistory = new ArrayList<Order>();
+    
+    public User(String namaUser, String noTelepon, String email, String lokasi, String role){
+        // initialization
+        this.namaUser = namaUser;
+        this.noTelepon = noTelepon;
+        this.email = email;
+        this.lokasi = lokasi;
+        this.role = role;
+    }
+    
+    public String getNamaUser(){
+        // return user name
+        return namaUser;
     }
 
-    // TODO: tambahkan methods yang diperlukan untuk class ini
+    public String getNoTelepon(){
+        // return telephone number
+        return noTelepon;
+    }
+
+    public String getEmail(){
+        // return email
+        return email;
+    }
+
+    public String getLokasi(){
+        // return location
+        return lokasi;
+    }
+
+    public String getRole(){
+        // return user role
+        return role;
+    }
+
+    public void addOrder(Order orderBaru){
+        // add new order to order history array list
+        this.orderHistory.add(orderBaru);
+    }
+
+    public ArrayList<Order> getOrderHistory(){
+        // return order history array list
+        return orderHistory;
+    }
 }
