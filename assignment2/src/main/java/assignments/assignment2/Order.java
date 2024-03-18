@@ -7,7 +7,7 @@ public class Order {
     private int ongkir;
     private Restaurant restoran;
     private ArrayList<Menu> items = new ArrayList<Menu>();
-    private boolean orderFinished;
+    private boolean orderFinished = false;
 
     public Order(String orderID, String tanggalOrder, int ongkir, Restaurant restoran, Menu[] items){
         // initialization
