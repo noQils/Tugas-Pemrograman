@@ -363,9 +363,8 @@ public class MainMenu {
         if (restoList == null || restoList.isEmpty()){ // if restaurant array list is empty, return null
             return null;
         }
-        namaRestoran = namaRestoran.toLowerCase();
         for (Restaurant resto: restoList){ // for loop to search for the restaurant
-            if (resto.getNamaRestoran().toLowerCase().equals(namaRestoran)) return resto; // if found return Restaurant object
+            if (resto.getNamaRestoran().equalsIgnoreCase(namaRestoran)) return resto; // if found return Restaurant object
         }
         return null;
     }
@@ -379,7 +378,7 @@ public class MainMenu {
          */
         namaMakanan = namaMakanan.toLowerCase();
         for (Menu menu: resto.getMenu()){ // for loop to search for the food
-            if (menu.getNamaMakanan().toLowerCase().equals(namaMakanan)) return menu; // if found return Menu object
+            if (menu.getNamaMakanan().equalsIgnoreCase(namaMakanan)) return menu; // if found return Menu object
         }
         return null;
     }
@@ -394,9 +393,8 @@ public class MainMenu {
         if (userLoggedIn.getOrderHistory() == null || userLoggedIn.getOrderHistory().isEmpty()){ // if user's order history array list is empty, return null
             return null;
         }
-        orderID = orderID.toLowerCase();
         for (Order order: userLoggedIn.getOrderHistory()){ // for loop to search for the orderID
-            if (order.getOrderID().toLowerCase().equals(orderID)) return order; // if found return Order object
+            if (order.getOrderID().equalsIgnoreCase(orderID)) return order; // if found return Order object
         }
         return null;
     }
