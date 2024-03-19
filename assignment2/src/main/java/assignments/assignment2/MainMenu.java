@@ -98,24 +98,24 @@ public class MainMenu {
         /*
          * make a new order from the logged-in user (customer)
          */
-        String orderID; // stores orderID input
-        String namaRestoran; // stores restaurant name input
-        String tanggalOrder; // stores date input
-        Restaurant resto; // stores selected restaurant object
-        Menu[] items; // stores list of items input
         System.out.println("\n--------------Buat Pesanan--------------");
         while (true){ // keep looping until all inputs are successfully validated
+            if (isRestoListEmpty()){ // if restaurant array list is empty, break
+                System.out.println("Belum ada restoran yang terdaftar.");
+                break;
+            }
+
             System.out.print("Nama Restoran: ");
-            namaRestoran = input.nextLine(); // receive restaurant name
-            
-            resto = searchResto(namaRestoran); // try to find the restaurant by its name
+            String namaRestoran = input.nextLine(); // receive restaurant name
+
+            Restaurant resto = searchResto(namaRestoran); // try to find the restaurant by its name
             if (resto == null){ // if restaurant not found, continue
                 System.out.println("Restoran tidak terdaftar pada sistem.\n");
                 continue;
             }
 
             System.out.print("Tanggal Pemesanan (DD/MM/YYYY): ");
-            tanggalOrder = input.nextLine(); // receive order date
+            String tanggalOrder = input.nextLine(); // receive order date
             if (!valDate(tanggalOrder)){ // call method valDate() to validate date input (if date is invalid, continue)
                 System.out.println("Masukkan tanggal sesuai format (DD/MM/YYYY)!\n");
                 continue;
@@ -129,7 +129,7 @@ public class MainMenu {
             }
 
             String[] pesananList = new String[jumlahPesanan]; // stores items list
-            items = new Menu[jumlahPesanan]; // define items array with given size
+            Menu[] items = new Menu[jumlahPesanan]; // define items array with given size
             Menu menu = null; // menu object to store menu object (for validation default value is null)
             System.out.println("Order:");
             for (int i = 0; i < jumlahPesanan; i++){ // for loop to receive items input
@@ -146,13 +146,13 @@ public class MainMenu {
                 continue;
             }
 
-            orderID = generateOrderID(namaRestoran, tanggalOrder, userLoggedIn.getNoTelepon()); // get order id
+            String orderID = generateOrderID(namaRestoran, tanggalOrder, userLoggedIn.getNoTelepon()); // get order id
+            int ongkir = Integer.parseInt(calculateShippingCost(userLoggedIn.getLokasi()).substring(3,9)
+                    .replace(".", "")); // get shipping cost
+            userLoggedIn.addOrder(new Order(orderID, tanggalOrder, ongkir, resto, items)); // add new order to user's order array list
+            System.out.print("Pesanan dengan ID " + orderID + " diterima!");
             break; // break while loop
         }
-        int ongkir = Integer.parseInt(calculateShippingCost(userLoggedIn.getLokasi()).substring(3,9)
-                    .replace(".", "")); // get shipping cost
-        userLoggedIn.addOrder(new Order(orderID, tanggalOrder, ongkir, resto, items)); // add new order to user's order array list
-        System.out.print("Pesanan dengan ID " + orderID + " diterima!");
     }
 
 
@@ -165,6 +165,11 @@ public class MainMenu {
         String bill = "\nBill:"; // string bill to make the bill
         System.out.println("\n--------------Cetak Bill--------------");
         while (true){ // keep looping until orderID input is valid
+            if (isOrderHistoryEmpty(userLoggedIn)){ // if user's order history array list is empty, break
+                System.out.println("Belum ada pesanan yang terdaftar. Mohon pesan terlebih dahulu!");
+                break;
+            }
+
             System.out.print("Masukkan Order ID: ");
             String orderID = input.nextLine(); // receive orderID input
 
@@ -205,8 +210,14 @@ public class MainMenu {
         String menu = "Menu:\n"; // string to store menu list
         System.out.println("\n--------------Lihat Menu--------------");
         while (true){ // keep looping until restaurant name input is valid
+            if (isRestoListEmpty()){ // if restaurant array list is empty, break
+                System.out.println("Belum ada restoran yang terdaftar.");
+                break;
+            }
+
             System.out.print("Nama Restoran: ");
             String namaRestoran = input.nextLine(); // receive restaurant name input
+
             Restaurant restoran = searchResto(namaRestoran); // try to find restaurant by its name
             if (restoran == null){ // if restauran not found, continue
                 System.out.println("Restoran tidak terdaftar pada sistem.\n");
@@ -232,8 +243,14 @@ public class MainMenu {
          */
         System.out.println("\n--------------Update Status Pesanan--------------");
         while (true){ // keep looping until all input are successfully validated
+            if (isOrderHistoryEmpty(userLoggedIn)){ // if user's order history array list is empty, break
+                System.out.println("Belum ada pesanan yang terdaftar. Mohon pesan terlebih dahulu!");
+                break;
+            }
+
             System.out.print("OrderID: ");
             String orderID = input.nextLine(); // receive orderID input
+
             Order selectedOrder = searchOrder(userLoggedIn, orderID); // try to find orderID in user's orderHistory arra list
             if (selectedOrder == null){ // if orderID is not found, continue
                 System.out.println("Order ID tidak dapat ditemukan.\n");
@@ -335,7 +352,7 @@ public class MainMenu {
          */
         System.out.println("\n--------------Hapus Restoran--------------");
         while (true){ // keep looping until restaurant name input is valid
-            if (restoList == null || restoList.isEmpty()){ // if restaurant array list is empty, break
+            if (isRestoListEmpty()){ // if restaurant array list is empty, break
                 System.out.println("Belum ada restoran yang terdaftar. Mohon tambahkan restoran baru ke sistem!");
                 break;
             }
@@ -360,9 +377,7 @@ public class MainMenu {
          * if restaurant is found, return Restaurant object
          * else, return null
          */
-        if (restoList == null || restoList.isEmpty()){ // if restaurant array list is empty, return null
-            return null;
-        }
+        if (isRestoListEmpty()) return null; // if restaurant array list is empty, return null
         for (Restaurant resto: restoList){ // for loop to search for the restaurant
             if (resto.getNamaRestoran().equalsIgnoreCase(namaRestoran)) return resto; // if found return Restaurant object
         }
@@ -390,13 +405,37 @@ public class MainMenu {
          * if restaurant is found, return Order object
          * else, return null
          */
-        if (userLoggedIn.getOrderHistory() == null || userLoggedIn.getOrderHistory().isEmpty()){ // if user's order history array list is empty, return null
-            return null;
-        }
+        if (isOrderHistoryEmpty(userLoggedIn)) return null; // if user's order history array list is empty, return null
         for (Order order: userLoggedIn.getOrderHistory()){ // for loop to search for the orderID
             if (order.getOrderID().equalsIgnoreCase(orderID)) return order; // if found return Order object
         }
         return null;
+    }
+
+
+        public static boolean isRestoListEmpty(){
+        /*
+         * check if resto array list is empty or not
+         * if resto array list is empty, return true
+         * else, return false
+         */
+        if (restoList == null || restoList.isEmpty()){ // if restaurant array list is empty, return true
+            return true;
+        }
+        return false;
+    }
+
+
+    public static boolean isOrderHistoryEmpty(User userLoggedIn){
+        /*
+         * check if order history array list is empty or not
+         * if user's order history array list is empty, return true
+         * else, return false
+         */
+        if (userLoggedIn.getOrderHistory() == null || userLoggedIn.getOrderHistory().isEmpty()){ // if user's order history array list is empty, return null
+            return true;
+        }
+        return false;
     }
 
 
