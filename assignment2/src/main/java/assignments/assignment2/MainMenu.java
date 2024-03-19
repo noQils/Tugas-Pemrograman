@@ -391,7 +391,6 @@ public class MainMenu {
          * if restaurant is found, return Menu object
          * else, return null
          */
-        namaMakanan = namaMakanan.toLowerCase();
         for (Menu menu: resto.getMenu()){ // for loop to search for the food
             if (menu.getNamaMakanan().equalsIgnoreCase(namaMakanan)) return menu; // if found return Menu object
         }
