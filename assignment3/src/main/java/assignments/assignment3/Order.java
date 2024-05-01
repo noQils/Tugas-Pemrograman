@@ -1,4 +1,5 @@
-package assignments.assignment2;
+package assignments.assignment3;
+
 import java.util.ArrayList;
 
 public class Order {
@@ -7,7 +8,7 @@ public class Order {
     private int ongkir;
     private Restaurant restoran;
     private ArrayList<Menu> items = new ArrayList<Menu>();
-    private boolean orderFinished = false;
+    private boolean orderFinished;
 
     public Order(String orderID, String tanggalOrder, int ongkir, Restaurant restoran, Menu[] items){
         // initialization

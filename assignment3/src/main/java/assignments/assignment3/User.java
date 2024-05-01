@@ -1,4 +1,5 @@
-package assignments.assignment2;
+package assignments.assignment3;
+
 import java.util.ArrayList;
 
 public class User {
@@ -8,14 +9,18 @@ public class User {
     private String lokasi;
     private String role;
     private ArrayList<Order> orderHistory = new ArrayList<Order>();
+    private DepeFoodPaymentSystem paymentMethod;
+    private long saldo;
     
-    public User(String namaUser, String noTelepon, String email, String lokasi, String role){
+    public User(String namaUser, String noTelepon, String email, String lokasi, String role, DepeFoodPaymentSystem paymentMethod, long saldo){
         // initialization
         this.namaUser = namaUser;
         this.noTelepon = noTelepon;
         this.email = email;
         this.lokasi = lokasi;
         this.role = role;
+        this.paymentMethod = paymentMethod;
+        this.saldo = saldo;
     }
     
     public String getNamaUser(){
@@ -51,5 +56,20 @@ public class User {
     public ArrayList<Order> getOrderHistory(){
         // return order history array list
         return orderHistory;
+    }
+
+    public DepeFoodPaymentSystem getPaymentMethod(){
+        // return payment object
+        return paymentMethod;
+    }
+
+    public void setSaldo(long saldo){
+        // set saldo
+        this.saldo = saldo;
+    }
+
+    public long getSaldo(){
+        // return saldo
+        return saldo;
     }
 }
