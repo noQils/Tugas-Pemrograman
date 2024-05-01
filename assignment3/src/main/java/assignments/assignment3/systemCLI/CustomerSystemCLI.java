@@ -241,6 +241,21 @@ public class CustomerSystemCLI extends UserSystemCLI{
         }
     }
 
+    protected static String generateOrderID(String namaRestoran, String tanggalOrder, String noTelepon) {
+        /*
+         * fucntion to generate orderID
+         * return orderID
+         */
+        String orderID = "";
+        
+        orderID += String.format("%S", namaRestoran.substring(0, 4)); // append first 4 letter of restaurant name in uppercase
+        orderID += tanggalOrder.replaceAll("/", ""); // append date without slashes
+        orderID += calculateNoTelepon(noTelepon); // append calculated no telp
+        orderID += calculateChecksum(orderID);  // append calculated checksum
+
+        return orderID; // return generated orderID
+    }
+
     protected String generateBill(Order selectedOrder){
         /*
          * receive and validate orderID input
@@ -314,22 +329,7 @@ public class CustomerSystemCLI extends UserSystemCLI{
         return check; // return validation result
     }
 
-    public static String generateOrderID(String namaRestoran, String tanggalOrder, String noTelepon) {
-        /*
-         * fucntion to generate orderID
-         * return orderID
-         */
-        String orderID = "";
-        
-        orderID += String.format("%S", namaRestoran.substring(0, 4)); // append first 4 letter of restaurant name in uppercase
-        orderID += tanggalOrder.replaceAll("/", ""); // append date without slashes
-        orderID += calculateNoTelepon(noTelepon); // append calculated no telp
-        orderID += calculateChecksum(orderID);  // append calculated checksum
-
-        return orderID; // return generated orderID
-    }
-
-    public static String calculateNoTelepon(String noTelepon){
+    protected static String calculateNoTelepon(String noTelepon){
         /*
          * funtion to calculate no telp from given input
          */
@@ -343,7 +343,7 @@ public class CustomerSystemCLI extends UserSystemCLI{
         return result; // return result
     }
 
-    public static String calculateChecksum(String orderID){
+    protected static String calculateChecksum(String orderID){
         /*
          * funtion to calculate checksum
          */
@@ -384,7 +384,7 @@ public class CustomerSystemCLI extends UserSystemCLI{
         return checksum; // return calculated checksum
     }
 
-    public static String calculateShippingCost(String lokasi){
+    protected static String calculateShippingCost(String lokasi){
         /*
          * funtion to calculateShippingCost
          * shipping cost is based on delivery location
