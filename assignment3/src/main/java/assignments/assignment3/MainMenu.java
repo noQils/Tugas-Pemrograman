@@ -3,6 +3,8 @@ package assignments.assignment3;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import assignments.assignment3.Restaurant;
+import assignments.assignment3.User;
 import assignments.assignment3.LoginManager;
 import assignments.assignment3.payment.CreditCardPayment;
 import assignments.assignment3.payment.DebitPayment;
