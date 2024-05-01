@@ -241,7 +241,7 @@ public class CustomerSystemCLI extends UserSystemCLI{
         }
     }
 
-    protected static String generateOrderID(String namaRestoran, String tanggalOrder, String noTelepon) {
+    protected String generateOrderID(String namaRestoran, String tanggalOrder, String noTelepon) {
         /*
          * fucntion to generate orderID
          * return orderID
@@ -329,7 +329,7 @@ public class CustomerSystemCLI extends UserSystemCLI{
         return check; // return validation result
     }
 
-    protected static String calculateNoTelepon(String noTelepon){
+    protected String calculateNoTelepon(String noTelepon){
         /*
          * funtion to calculate no telp from given input
          */
@@ -343,7 +343,7 @@ public class CustomerSystemCLI extends UserSystemCLI{
         return result; // return result
     }
 
-    protected static String calculateChecksum(String orderID){
+    protected String calculateChecksum(String orderID){
         /*
          * funtion to calculate checksum
          */
@@ -384,7 +384,7 @@ public class CustomerSystemCLI extends UserSystemCLI{
         return checksum; // return calculated checksum
     }
 
-    protected static String calculateShippingCost(String lokasi){
+    protected String calculateShippingCost(String lokasi){
         /*
          * funtion to calculateShippingCost
          * shipping cost is based on delivery location
