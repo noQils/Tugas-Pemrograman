@@ -298,7 +298,7 @@ public class CustomerSystemCLI extends UserSystemCLI{
         return null;
     }
     
-    public Order searchOrder(User userLoggedIn, String orderID){
+    protected Order searchOrder(User userLoggedIn, String orderID){
         /*
          * method to search for orderID in user's order history array list
          * if restaurant is found, return Order object
