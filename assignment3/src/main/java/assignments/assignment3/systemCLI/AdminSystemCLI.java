@@ -3,7 +3,6 @@ package assignments.assignment3.systemCLI;
 import java.util.ArrayList;
 import assignments.assignment3.Menu;
 import assignments.assignment3.Restaurant;
-import assignments.assignment3.User;
 import assignments.assignment3.MainMenu;
 
 
