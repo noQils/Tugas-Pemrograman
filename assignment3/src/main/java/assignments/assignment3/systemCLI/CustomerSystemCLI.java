@@ -6,7 +6,8 @@ import assignments.assignment3.Order;
 import assignments.assignment3.Menu;
 import assignments.assignment3.Restaurant;
 import assignments.assignment3.User;
-import assignments.assignment3.MainMenu
+import assignments.assignment3.MainMenu;
+import assignments.assignment3.payment.*;
 
 public class CustomerSystemCLI extends UserSystemCLI{
     private ArrayList<Restaurant> restoList;

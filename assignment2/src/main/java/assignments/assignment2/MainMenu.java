@@ -126,6 +126,7 @@ public class MainMenu {
             input.nextLine(); // clear scanner
             if (jumlahPesanan < 1){ // if amount of items input is less than 1, continue
                 System.out.println("Jumlah pesanan minimal 1!\n");
+                continue;
             }
 
             String[] pesananList = new String[jumlahPesanan]; // stores items list
