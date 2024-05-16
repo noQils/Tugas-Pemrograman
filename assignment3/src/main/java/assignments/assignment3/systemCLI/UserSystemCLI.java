@@ -17,7 +17,7 @@ public abstract class UserSystemCLI {
         }
     }
 
-    protected Restaurant searchResto(String namaRestoran, ArrayList<Restaurant> restoList){
+    public static Restaurant searchResto(String namaRestoran, ArrayList<Restaurant> restoList){
         /*
          * method to search for a restaurant in the restaurant array list
          * if restaurant is found, return Restaurant object

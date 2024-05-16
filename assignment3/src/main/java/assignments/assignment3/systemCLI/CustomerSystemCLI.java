@@ -44,7 +44,7 @@ public class CustomerSystemCLI extends UserSystemCLI{
         System.out.print("Pilihan menu: ");
     }
 
-    protected void handleBuatPesanan(){
+    public void handleBuatPesanan(){
         /*
          * make a new order from the logged-in user (customer)
          */
@@ -105,7 +105,7 @@ public class CustomerSystemCLI extends UserSystemCLI{
         System.out.print("Pesanan dengan ID " + orderID + " diterima!");    
     }
 
-    protected void handleCetakBill(){
+    public void handleCetakBill(){
         /*
          * receive and validate orderID
          * generate bill
@@ -119,7 +119,7 @@ public class CustomerSystemCLI extends UserSystemCLI{
         System.out.println(generateBill(inputOrderID()));
     }
 
-    protected void handleLihatMenu(){
+    public void handleLihatMenu(){
         /*
          * receive and validate restaurant name
          * add all food and cost in menu to string 'menu'
@@ -147,7 +147,7 @@ public class CustomerSystemCLI extends UserSystemCLI{
     }
 
 
-    protected void handleBayarBill(){
+    public void handleBayarBill(){
         /*
          * receive and validate orderID
          * generate bill
@@ -187,7 +187,6 @@ public class CustomerSystemCLI extends UserSystemCLI{
                 return;
             }
             CreditCardPayment creditPayment = (CreditCardPayment) payment; // cast payment to CreditCardPayment
-            System.out.println("this is credit");
             newSaldo = payment.processPayment((long) totalHarga, saldoUser); // process payment
             System.out.println("Berhasil membayar bill sebesar Rp " + (long) totalHarga + 
                                 " dengan biaya transaksi sebesar Rp " + creditPayment.countTransactionFee((long) totalHarga));
@@ -218,13 +217,13 @@ public class CustomerSystemCLI extends UserSystemCLI{
         selectedOrder.setOrderStatus(); // set order status to finished
     }
 
-    protected void handleCekSaldo(){
+    public void handleCekSaldo(){
         /*
          * print user's saldo
          */
         System.out.println("\nSisa saldo sebesar: Rp " + userLoggedIn.getSaldo());
     }
-    protected Order inputOrderID(){
+    public Order inputOrderID(){
         /*
          * receive and validate orderID input
          * return Order object
@@ -243,7 +242,7 @@ public class CustomerSystemCLI extends UserSystemCLI{
         }
     }
 
-    protected String generateOrderID(String namaRestoran, String tanggalOrder, String noTelepon) {
+    public static String generateOrderID(String namaRestoran, String tanggalOrder, String noTelepon) {
         /*
          * fucntion to generate orderID
          * return orderID
@@ -258,7 +257,7 @@ public class CustomerSystemCLI extends UserSystemCLI{
         return orderID; // return generated orderID
     }
 
-    protected String generateBill(Order selectedOrder){
+    public String generateBill(Order selectedOrder){
         /*
          * receive and validate orderID input
          * add all information about order to string 'bill'
@@ -287,7 +286,7 @@ public class CustomerSystemCLI extends UserSystemCLI{
         return bill;
     }
 
-    protected Menu searchMenu(Restaurant resto, String namaMakanan){
+    public static Menu searchMenu(Restaurant resto, String namaMakanan){
         /*
          * method to search for a food in the restaurant's menu list
          * if restaurant is found, return Menu object
@@ -300,7 +299,7 @@ public class CustomerSystemCLI extends UserSystemCLI{
         return null;
     }
     
-    protected Order searchOrder(User userLoggedIn, String orderID){
+    public static Order searchOrder(User userLoggedIn, String orderID){
         /*
          * method to search for orderID in user's order history array list
          * if restaurant is found, return Order object
@@ -316,7 +315,7 @@ public class CustomerSystemCLI extends UserSystemCLI{
         return null;
     }
 
-    protected Boolean valDate(String tanggalOrder){
+    public Boolean valDate(String tanggalOrder){
         /*
          * function to validate date (in DD/MM/YYYY format)
          */
@@ -331,7 +330,7 @@ public class CustomerSystemCLI extends UserSystemCLI{
         return check; // return validation result
     }
 
-    protected String calculateNoTelepon(String noTelepon){
+    public static String calculateNoTelepon(String noTelepon){
         /*
          * funtion to calculate no telp from given input
          */
@@ -345,7 +344,7 @@ public class CustomerSystemCLI extends UserSystemCLI{
         return result; // return result
     }
 
-    protected String calculateChecksum(String orderID){
+    public static String calculateChecksum(String orderID){
         /*
          * funtion to calculate checksum
          */
@@ -386,7 +385,7 @@ public class CustomerSystemCLI extends UserSystemCLI{
         return checksum; // return calculated checksum
     }
 
-    protected String calculateShippingCost(String lokasi){
+    public static String calculateShippingCost(String lokasi){
         /*
          * funtion to calculateShippingCost
          * shipping cost is based on delivery location

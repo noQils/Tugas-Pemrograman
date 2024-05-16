@@ -6,7 +6,6 @@ import assignments.assignment3.Restaurant;
 import assignments.assignment3.MainMenu;
 
 
-//TODO: Extends Abstract yang diberikan
 public class AdminSystemCLI extends UserSystemCLI{
     private ArrayList<Restaurant> restoList;
 
@@ -35,7 +34,7 @@ public class AdminSystemCLI extends UserSystemCLI{
         System.out.print("Pilihan menu: ");
     }
 
-    protected void handleTambahRestoran(){
+    public void handleTambahRestoran(){
         /*
          * method for admin to add new restaurant
          * add the newly created restaurant to restaurant array list
@@ -106,7 +105,7 @@ public class AdminSystemCLI extends UserSystemCLI{
         }
     }
 
-    protected void handleHapusRestoran(){
+    public void handleHapusRestoran(){
         /*
          * method for admin to remove existing restaurant from restaurant array list
          */

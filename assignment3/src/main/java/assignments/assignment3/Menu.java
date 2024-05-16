@@ -14,6 +14,11 @@ public class Menu {
         // return food name
         return namaMakanan;
     }
+    
+    public void setHarga(double harga){
+        // set food cost
+        this.harga = harga;
+    }
 
     public double getHarga(){
         // return food cost
