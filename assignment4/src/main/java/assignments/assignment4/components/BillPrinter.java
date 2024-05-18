@@ -8,6 +8,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import java.util.ArrayList;
@@ -16,13 +17,14 @@ import java.util.Map;
 import assignments.assignment3.Menu;
 import assignments.assignment3.Order;
 import assignments.assignment3.User;
+import assignments.assignment3.systemCLI.CustomerSystemCLI;
 import assignments.assignment4.MainApp;
+import assignments.assignment4.page.MemberMenu;
 
 public class BillPrinter {
     private Stage stage;
     private MainApp mainApp;
     private User user;
-    private static Map<String, Scene> billPrinterScenes = new HashMap<>();
 
     public BillPrinter(Stage stage, MainApp mainApp, User user) {
         this.stage = stage;
@@ -31,12 +33,12 @@ public class BillPrinter {
     }
 
     /**
-        * Creates a bill printer form scene.
-        *
-        * @param order The order object containing the order details.
-        * @param printBillForm The scene to return to when the return button is clicked.
-        * @return The created bill printer form scene.
-        */
+     * Creates a bill printer form scene.
+     *
+     * @param order The order object containing the order details.
+     * @param printBillForm The scene to return to when the return button is clicked.
+     * @return The created bill printer form scene.
+     */
     private Scene createBillPrinterForm(Order order, Scene printBillForm){
         VBox menuLayout = new VBox(10);
         menuLayout.setAlignment(Pos.CENTER);
@@ -90,25 +92,33 @@ public class BillPrinter {
         return new Scene(menuLayout, 500, 500);
     }
 
+
     /**
-     * Adds a bill printer scene to the collection of scenes.
-     *
-     * @param orderID the ID of the order
-     * @param scene the scene to be added
+     * Method to validate orderID input by user
+     * 
+     * @param orderID
+     * @return order object if order is found
+     * @return null if else
      */
-    public static void addBillPrinterScene(String orderID, Scene scene){
-        billPrinterScenes.put(orderID, scene);
+    private Order validateOrderID(String orderID){
+        return CustomerSystemCLI.searchOrder(user, orderID);
     }
 
     /**
-     * Represents a scene in a graphical user interface.
-     * A scene is a container for all the visual elements that make up a user interface.
+     * Method to get bill printer scene
+     * Validate orderID first
+     * 
+     * @param orderID
+     * @param printBillForm
+     * @return bill printer scene if orderID is found
+     * @return null if else
      */
-    public static Scene checkBillPrinterScene(Order order){
-        return billPrinterScenes.get(order.getOrderID());
-    }
-
-    public Scene getScene(Order order, Scene printBillForm) {
-        return this.createBillPrinterForm(order, printBillForm);
+    public Scene getScene(String orderID, Scene printBillForm) {
+        Order order = validateOrderID(orderID);
+        if (order == null){
+            MemberMenu.showAlert("Error", "Invalid Order ID", "Please input a valid order ID", AlertType.ERROR);
+            return null;
+        }
+        else return this.createBillPrinterForm(order, printBillForm);
     }
 }

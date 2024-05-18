@@ -255,17 +255,8 @@ public class CustomerMenu extends MemberMenu{
         Button printButton = new Button("Print Bill");
         printButton.setStyle("-fx-font: 14 arial; -fx-text-fill: black;");
         printButton.setOnAction(e -> {
-            Order order = CustomerSystemCLI.searchOrder(user, orderIDInput.getText());
-            if (order == null){
-                showAlert("Error", "Invalid Order ID", "Please input a valid order ID", AlertType.ERROR);
-                return;
-            }
-            Scene billPrinterScene = BillPrinter.checkBillPrinterScene(order);
-            if (billPrinterScene == null){
-                billPrinterScene = billPrinter.getScene(order, this.printBillScene);
-                BillPrinter.addBillPrinterScene(order.getOrderID(), billPrinterScene);
-            }
-            mainApp.setScene(billPrinterScene);
+            Scene billPrinterScene = new BillPrinter(stage, mainApp, this.user).getScene(orderIDInput.getText(), printBillScene);
+            if (billPrinterScene != null) mainApp.setScene(billPrinterScene);
         });
 
         // Create return button
