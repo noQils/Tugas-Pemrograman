@@ -38,7 +38,7 @@ public class LoginForm {
     }
 
     /**
-     * Create lofin form scene
+     * Create login form scene
      * 
      * @return scene for login
      */
