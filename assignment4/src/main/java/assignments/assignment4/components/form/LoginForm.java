@@ -1,8 +1,12 @@
 package assignments.assignment4.components.form;
 
-import assignments.assignment3.DepeFood;
+import assignments.assignment3.MainMenu;
 import assignments.assignment3.User;
+import assignments.assignment4.MainApp;
+import assignments.assignment4.page.AdminMenu;
+import assignments.assignment4.page.CustomerMenu;
 import assignments.assignment4.page.*;
+
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -20,9 +24,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
-import assignments.assignment4.MainApp;
-import assignments.assignment4.page.AdminMenu;
-import assignments.assignment4.page.CustomerMenu;
 import java.util.function.Consumer;
 
 public class LoginForm {
@@ -59,7 +60,7 @@ public class LoginForm {
         nameInput.setPrefHeight(30);
         nameInput.setMaxWidth(235);
         nameInput.setPromptText("Enter your name");
-        nameInput.setStyle("-fx-font: 14 arial; -fx-background-color: white;");
+        nameInput.setStyle("-fx-font: 14 arial");
         GridPane.setConstraints(nameInput, 9, 23, 24, 4, HPos.CENTER, VPos.CENTER);
 
         Label phoneLabel = new Label("Phone Number");
@@ -70,7 +71,7 @@ public class LoginForm {
         phoneInput.setPrefHeight(30);
         phoneInput.setMaxWidth(235);
         phoneInput.setPromptText("Enter your phone number");
-        phoneInput.setStyle("-fx-font: 14 arial; -fx-background-color: white;");
+        phoneInput.setStyle("-fx-font: 14 arial");
         GridPane.setConstraints(phoneInput, 9, 27, 24, 4, HPos.CENTER, VPos.CENTER);
 
         Button loginButton = new Button("Login");
@@ -81,7 +82,7 @@ public class LoginForm {
         GridPane.setConstraints(loginButton, 10, 31, 11, 4, HPos.CENTER, VPos.CENTER);
         loginButton.setOnAction(e -> handleLogin());
 
-        grid.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #2b5876, #4e4376)");
+        grid.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #2b5876, #524376)");
         grid.getChildren().addAll(welcomeLabel, nameLabel, nameInput, phoneLabel, phoneInput, loginButton);
 
         return new Scene(grid, 400, 600);
@@ -95,7 +96,7 @@ public class LoginForm {
      * If the user does not exist, displays an error message.
      */
     private void handleLogin() {
-        User user = DepeFood.getUser(nameInput.getText(), phoneInput.getText());
+        User user = MainMenu.getUser(nameInput.getText(), phoneInput.getText());
         if (user != null) {
             mainApp.setUser(user);
             Scene userMenu = mainApp.getScene(user.getNamaUser());

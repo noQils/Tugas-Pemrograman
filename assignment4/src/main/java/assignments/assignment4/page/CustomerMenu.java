@@ -1,5 +1,16 @@
 package assignments.assignment4.page;
 
+import assignments.assignment1.OrderGenerator;
+import assignments.assignment3.Order;
+import assignments.assignment3.Menu;
+import assignments.assignment3.Restaurant;
+import assignments.assignment3.User;
+import assignments.assignment3.payment.*;
+import assignments.assignment3.systemCLI.UserSystemCLI;
+import assignments.assignment3.systemCLI.CustomerSystemCLI;
+import assignments.assignment4.MainApp;
+import assignments.assignment4.components.BillPrinter;
+
 import javafx.collections.ArrayChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,16 +31,6 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Shape;
 import javafx.stage.Stage;
-import assignments.assignment1.OrderGenerator;
-import assignments.assignment3.Order;
-import assignments.assignment3.Menu;
-import assignments.assignment3.Restaurant;
-import assignments.assignment3.User;
-import assignments.assignment3.payment.*;
-import assignments.assignment3.systemCLI.UserSystemCLI;
-import assignments.assignment3.systemCLI.CustomerSystemCLI;
-import assignments.assignment4.MainApp;
-import assignments.assignment4.components.BillPrinter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -134,7 +135,7 @@ public class CustomerMenu extends MemberMenu{
         logOutButton.addEventHandler(MouseEvent.MOUSE_EXITED, e -> logOutButton.setEffect(null)); 
         logOutButton.setOnAction(e -> mainApp.logout());
 
-        menuLayout.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #2b5876, #4e4376)");
+        menuLayout.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #2b5876, #524376)");
         menuLayout.getChildren().addAll(makeOrderButton, viewOrderHistoryButton, printBillButton, payButton, checkBalanceButton, logOutButton);
 
         return new Scene(menuLayout, 400, 600);
@@ -149,7 +150,7 @@ public class CustomerMenu extends MemberMenu{
         VBox menuLayout = new VBox(10);
         menuLayout.setAlignment(Pos.CENTER);
 
-        Label restaurantNameLabel = new Label("Restaurant Name:");
+        Label restaurantNameLabel = new Label("Restaurant Name");
         restaurantNameLabel.setStyle("-fx-font: 15 arial; -fx-text-fill: white; -fx-font-weight: bold;");
 
         // Create restaurant combobox
@@ -157,7 +158,7 @@ public class CustomerMenu extends MemberMenu{
         ComboBox<String> restaurantComboBox = new ComboBox<>();
         restoList.stream().forEach(r -> restaurantComboBox.getItems().add(r.getNamaRestoran()));
         restaurantComboBox.setPromptText("Select restaurant");
-        restaurantComboBox.setStyle("-fx-font: 14 arial; -fx-text-fill: black;");
+        restaurantComboBox.setStyle("-fx-font: 14 arial; -fx-background-color: white");
         restaurantComboBox.addEventHandler(MouseEvent.MOUSE_ENTERED, e -> restaurantComboBox.setEffect(new DropShadow()));
         restaurantComboBox.addEventHandler(MouseEvent.MOUSE_EXITED, e -> restaurantComboBox.setEffect(null)); 
         restaurantComboBox.setOnAction(e -> {
@@ -168,7 +169,7 @@ public class CustomerMenu extends MemberMenu{
             });
         });
 
-        Label dateLabel = new Label("Date(DD/MM/YYYY):");
+        Label dateLabel = new Label("Date(DD/MM/YYYY)");
         dateLabel.setStyle("-fx-font: 15 arial; -fx-text-fill: white; -fx-font-weight: bold;");
 
         // Create date input field
@@ -178,7 +179,7 @@ public class CustomerMenu extends MemberMenu{
         dateInput.setPromptText("Enter date");
         dateInput.setStyle("-fx-font: 14 arial");
 
-        Label menuItemsLabel = new Label("Menu Items:");
+        Label menuItemsLabel = new Label("Menu Items");
         menuItemsLabel.setStyle("-fx-font: 15 arial; -fx-text-fill: white; -fx-font-weight: bold;");
 
         Label selectTipsLabel = new Label("(hold ctrl + mouse click) for multiple selection");
@@ -214,7 +215,7 @@ public class CustomerMenu extends MemberMenu{
             mainApp.setScene(mainApp.getScene(this.user.getNamaUser()));
         });
 
-        menuLayout.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #2b5876, #4e4376)");
+        menuLayout.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #2b5876, #524376)");
         menuLayout.getChildren().addAll(restaurantNameLabel, restaurantComboBox, dateLabel, dateInput, menuItemsLabel,
                                                     selectTipsLabel, restoItemListView, makeOrderButton, returnButton);
 
@@ -257,7 +258,7 @@ public class CustomerMenu extends MemberMenu{
         returnButton.addEventHandler(MouseEvent.MOUSE_EXITED, e -> returnButton.setEffect(null)); 
         returnButton.setOnAction(e -> mainApp.setScene(mainApp.getScene(this.user.getNamaUser())));
 
-        menuLayout.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #2b5876, #4e4376)");
+        menuLayout.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #2b5876, #524376)");
         menuLayout.getChildren().addAll(orderHistoryLabel, copyTipsLabel, orderHistoryListView, returnButton);
 
         return new Scene(menuLayout, 400,600);
@@ -272,7 +273,7 @@ public class CustomerMenu extends MemberMenu{
         VBox menuLayout = new VBox(10);
         menuLayout.setAlignment(Pos.CENTER);
 
-        Label orderIDLabel = new Label("Order ID:");
+        Label orderIDLabel = new Label("Order ID");
         orderIDLabel.setStyle("-fx-font: 15 arial; -fx-text-fill: white; -fx-font-weight: bold;");
 
         // Create orderID input field
@@ -302,7 +303,7 @@ public class CustomerMenu extends MemberMenu{
             mainApp.setScene(mainApp.getScene(this.user.getNamaUser()));
         });
 
-        menuLayout.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #2b5876, #4e4376)");
+        menuLayout.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #2b5876, #524376)");
         menuLayout.getChildren().addAll(orderIDLabel, orderIDInput, printButton, returnButton);
 
         return new Scene(menuLayout, 400,600);
@@ -331,7 +332,7 @@ public class CustomerMenu extends MemberMenu{
         ComboBox<String> paymentMethodComboBox = new ComboBox<>();
         paymentMethodComboBox.getItems().addAll("Credit Card", "Debit");
         paymentMethodComboBox.setPromptText("Select payment method");
-        paymentMethodComboBox.setStyle("-fx-font: 14 arial; -fx-text-fill: black;");
+        paymentMethodComboBox.setStyle("-fx-font: 14 arial; -fx-background-color: white");
 
         // Create pay button
         Button payButton = new Button("Pay");
@@ -350,7 +351,7 @@ public class CustomerMenu extends MemberMenu{
             mainApp.setScene(mainApp.getScene(this.user.getNamaUser()));
         });
 
-        menuLayout.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #2b5876, #4e4376)");
+        menuLayout.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #2b5876, #524376)");
         menuLayout.getChildren().addAll(orderIDLabel, orderIDInput, paymentMethodComboBox, payButton, returnButton);
 
         return new Scene(menuLayout, 400,600);
@@ -379,7 +380,7 @@ public class CustomerMenu extends MemberMenu{
         returnButton.addEventHandler(MouseEvent.MOUSE_EXITED, e -> returnButton.setEffect(null)); 
         returnButton.setOnAction(e -> mainApp.setScene(mainApp.getScene(this.user.getNamaUser())));
 
-        menuLayout.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #2b5876, #4e4376)");
+        menuLayout.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #2b5876, #524376)");
         menuLayout.getChildren().addAll(userLabel, balanceLabel, returnButton);
 
         return new Scene(menuLayout, 400,600);

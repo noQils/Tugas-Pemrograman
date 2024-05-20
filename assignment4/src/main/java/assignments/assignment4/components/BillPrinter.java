@@ -1,5 +1,12 @@
 package assignments.assignment4.components;
 
+import assignments.assignment3.Menu;
+import assignments.assignment3.Order;
+import assignments.assignment3.User;
+import assignments.assignment3.systemCLI.CustomerSystemCLI;
+import assignments.assignment4.MainApp;
+import assignments.assignment4.page.MemberMenu;
+
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -16,12 +23,6 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import assignments.assignment3.Menu;
-import assignments.assignment3.Order;
-import assignments.assignment3.User;
-import assignments.assignment3.systemCLI.CustomerSystemCLI;
-import assignments.assignment4.MainApp;
-import assignments.assignment4.page.MemberMenu;
 
 public class BillPrinter {
     private Stage stage;
@@ -89,7 +90,7 @@ public class BillPrinter {
         returnButton.addEventHandler(MouseEvent.MOUSE_EXITED, e -> returnButton.setEffect(null)); 
         returnButton.setOnAction(e -> mainApp.setScene(printBillForm));
 
-        menuLayout.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #2b5876, #4e4376)");
+        menuLayout.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #2b5876, #524376)");
         menuLayout.getChildren().addAll(billLabel, orderIDLabel, dateLabel, restaurantLabel, shippingLabel, orderStatusLabel, itemsLabel);
         for (Label itemLabel : itemsLabelList) menuLayout.getChildren().add(itemLabel);
         menuLayout.getChildren().addAll(shippingCostLabel, totalPriceLabel, returnButton);

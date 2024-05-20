@@ -1,15 +1,14 @@
 package assignments.assignment4;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import assignments.assignment3.DepeFood;
+import assignments.assignment3.MainMenu;
 import assignments.assignment3.User;
 import assignments.assignment4.components.form.LoginForm;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainApp extends Application {
 
@@ -23,7 +22,7 @@ public class MainApp extends Application {
         window = primaryStage;
         window.setTitle("DepeFood Ordering System");
         window.setResizable(false);
-        DepeFood.initUser(); // Initialize users
+        MainMenu.initUser(); // Initialize users
 
         // Initialize all scenes
         Scene loginScene = new LoginForm(window, this).getScene();

@@ -67,6 +67,7 @@ public class MainMenu {
             System.out.println("Pengguna dengan data tersebut tidak ditemukan!\n");
             return;
         }
+        System.out.print("Selamat Datang " + nama + "!");
         loginManager.getSystem(userLoggedIn.getRole()).run();
     }
 
@@ -78,7 +79,6 @@ public class MainMenu {
          */
         for (User user: userList){
             if (user.getNamaUser().equals(nama) && user.getNoTelepon().equals(noTelepon)){
-                System.out.print("Selamat Datang " + nama + "!");
                 return user;
             }
         }
