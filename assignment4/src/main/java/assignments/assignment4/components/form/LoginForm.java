@@ -12,8 +12,13 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.InnerShadow;
+import javafx.scene.effect.Shadow;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import assignments.assignment4.MainApp;
 import assignments.assignment4.page.AdminMenu;
@@ -38,43 +43,45 @@ public class LoginForm {
      */
     private Scene createLoginForm() {
         GridPane grid = new GridPane();
-        grid.setPadding(new Insets(20, 25, 20, 20));
+        grid.setPadding(new Insets(20, 20, 20, 20));
         grid.setVgap(10);
         grid.setHgap(12);
 
         Label welcomeLabel = new Label("Welcome to DepeFood");
-        welcomeLabel.setStyle("-fx-font: 33 arial; -fx-text-fill: white; -fx-font-weight: bold");
-        GridPane.setConstraints(welcomeLabel, 0, 17, 35, 5);
+        welcomeLabel.setStyle("-fx-font: 30 arial; -fx-text-fill: white; -fx-font-weight: bold");
+        GridPane.setConstraints(welcomeLabel, 0, 15, 31, 5, HPos.CENTER, VPos.CENTER);
 
-        Label nameLabel = new Label("Name:");
-        nameLabel.setStyle("-fx-font: 15 arial; -fx-text-fill: white;");
-        GridPane.setConstraints(nameLabel, 0, 23, 10, 4);
+        Label nameLabel = new Label("Name");
+        nameLabel.setStyle("-fx-font: 15 arial; -fx-text-fill: white; -fx-font-weight: bold;");
+        GridPane.setConstraints(nameLabel, 0, 23, 10, 4, HPos.LEFT, VPos.CENTER);
 
         nameInput = new TextField();
         nameInput.setPrefHeight(30);
         nameInput.setMaxWidth(235);
         nameInput.setPromptText("Enter your name");
-        nameInput.setStyle("-fx-font: 14 arial");
-        GridPane.setConstraints(nameInput, 10, 23, 21, 4);
+        nameInput.setStyle("-fx-font: 14 arial; -fx-background-color: white;");
+        GridPane.setConstraints(nameInput, 9, 23, 24, 4, HPos.CENTER, VPos.CENTER);
 
-        Label phoneLabel = new Label("Phone Number:");
-        phoneLabel.setStyle("-fx-font: 15 arial; -fx-text-fill: white;");
-        GridPane.setConstraints(phoneLabel, 0, 27, 10, 4);
+        Label phoneLabel = new Label("Phone Number");
+        phoneLabel.setStyle("-fx-font: 15 arial; -fx-text-fill: white; -fx-font-weight: bold;");
+        GridPane.setConstraints(phoneLabel, 0, 27, 12, 4, HPos.LEFT, VPos.CENTER);
 
         phoneInput = new TextField();
         phoneInput.setPrefHeight(30);
         phoneInput.setMaxWidth(235);
         phoneInput.setPromptText("Enter your phone number");
-        phoneInput.setStyle("-fx-font: 14 arial");
-        GridPane.setConstraints(phoneInput, 10, 27, 21, 4);
+        phoneInput.setStyle("-fx-font: 14 arial; -fx-background-color: white;");
+        GridPane.setConstraints(phoneInput, 9, 27, 24, 4, HPos.CENTER, VPos.CENTER);
 
         Button loginButton = new Button("Login");
         loginButton.setPrefSize(100, 27);
-        loginButton.setStyle("-fx-font: 14 arial; -fx-text-fill: black;");
-        GridPane.setConstraints(loginButton, 10, 31, 10, 4);
+        loginButton.setStyle("-fx-font: 14 arial; -fx-text-fill: white; -fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #ff9966, #ff5e62)");
+        loginButton.addEventHandler(MouseEvent.MOUSE_ENTERED, e -> loginButton.setEffect(new DropShadow()));
+        loginButton.addEventHandler(MouseEvent.MOUSE_EXITED, e -> loginButton.setEffect(null)); 
+        GridPane.setConstraints(loginButton, 10, 31, 11, 4, HPos.CENTER, VPos.CENTER);
         loginButton.setOnAction(e -> handleLogin());
 
-        grid.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #076585, #c7fbfc)");
+        grid.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #2b5876, #4e4376)");
         grid.getChildren().addAll(welcomeLabel, nameLabel, nameInput, phoneLabel, phoneInput, loginButton);
 
         return new Scene(grid, 400, 600);

@@ -12,6 +12,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -49,29 +51,41 @@ public class AdminMenu extends MemberMenu{
         menuLayout.setAlignment(Pos.CENTER);
 
         Button addRestaurantButton = new Button("Add Restaurant");
-        addRestaurantButton.setStyle("-fx-font: 14 arial; -fx-text-fill: black;");
+        addRestaurantButton.setMinWidth(150);
+        addRestaurantButton.setStyle("-fx-font: 14 arial; -fx-text-fill: white; -fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #ff9966, #ff5e62)");
+        addRestaurantButton.addEventHandler(MouseEvent.MOUSE_ENTERED, e -> addRestaurantButton.setEffect(new DropShadow()));
+        addRestaurantButton.addEventHandler(MouseEvent.MOUSE_EXITED, e -> addRestaurantButton.setEffect(null)); 
         addRestaurantButton.setOnAction(e -> {
             mainApp.setScene(this.addRestaurantScene);
         });
 
         Button addMenuButton = new Button("Add Menu");
-        addMenuButton.setStyle("-fx-font: 14 arial; -fx-text-fill: black;");
+        addMenuButton.setMinWidth(150);
+        addMenuButton.setStyle("-fx-font: 14 arial; -fx-text-fill: white; -fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #ff9966, #ff5e62)");
+        addMenuButton.addEventHandler(MouseEvent.MOUSE_ENTERED, e -> addMenuButton.setEffect(new DropShadow()));
+        addMenuButton.addEventHandler(MouseEvent.MOUSE_EXITED, e -> addMenuButton.setEffect(null)); 
         addMenuButton.setOnAction(e -> {
             mainApp.setScene(this.addMenuScene);
         });
 
         Button viewRestaurantsButton = new Button("View Restaurants");
-        viewRestaurantsButton.setStyle("-fx-font: 14 arial; -fx-text-fill: black;");
+        viewRestaurantsButton.setMinWidth(150);
+        viewRestaurantsButton.setStyle("-fx-font: 14 arial; -fx-text-fill: white; -fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #ff9966, #ff5e62)");
+        viewRestaurantsButton.addEventHandler(MouseEvent.MOUSE_ENTERED, e -> viewRestaurantsButton.setEffect(new DropShadow()));
+        viewRestaurantsButton.addEventHandler(MouseEvent.MOUSE_EXITED, e -> viewRestaurantsButton.setEffect(null)); 
         viewRestaurantsButton.setOnAction(e -> {
             menuItemsListView.getItems().clear();
             mainApp.setScene(this.viewRestaurantsScene);
         });
 
         Button logOutButton = new Button("Log Out");
-        logOutButton.setStyle("-fx-font: 14 arial; -fx-text-fill: black;");
+        logOutButton.setMinWidth(150);
+        logOutButton.setStyle("-fx-font: 14 arial; -fx-text-fill: white; -fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #ff9966, #ff5e62)");
+        logOutButton.addEventHandler(MouseEvent.MOUSE_ENTERED, e -> logOutButton.setEffect(new DropShadow()));
+        logOutButton.addEventHandler(MouseEvent.MOUSE_EXITED, e -> logOutButton.setEffect(null)); 
         logOutButton.setOnAction(e -> mainApp.logout());
 
-        menuLayout.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #076585, #c7fbfc)");
+        menuLayout.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #2b5876, #4e4376)");
         menuLayout.getChildren().addAll(addRestaurantButton, addMenuButton, viewRestaurantsButton, logOutButton);
 
         return new Scene(menuLayout, 400, 600);
@@ -87,7 +101,7 @@ public class AdminMenu extends MemberMenu{
         menuLayout.setAlignment(Pos.CENTER);
 
         Label restaurantNameLabel = new Label("Restaurant Name:");
-        restaurantNameLabel.setStyle("-fx-font: 15 arial; -fx-text-fill: white;");
+        restaurantNameLabel.setStyle("-fx-font: 15 arial; -fx-text-fill: white; -fx-font-weight: bold;");
 
         TextField restaurantNameInput = new TextField();
         restaurantNameInput.setPrefHeight(30);
@@ -96,17 +110,21 @@ public class AdminMenu extends MemberMenu{
         restaurantNameInput.setStyle("-fx-font: 14 arial");
 
         Button submitButton = new Button("Submit");
-        submitButton.setStyle("-fx-font: 14 arial; -fx-text-fill: black;");
+        submitButton.setStyle("-fx-font: 14 arial; -fx-text-fill: white; -fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #ff9966, #ff5e62)");
+        submitButton.addEventHandler(MouseEvent.MOUSE_ENTERED, e -> submitButton.setEffect(new DropShadow()));
+        submitButton.addEventHandler(MouseEvent.MOUSE_EXITED, e -> submitButton.setEffect(null)); 
         submitButton.setOnAction(e -> {
             handleAddRestaurant(restaurantNameInput.getText());
             restaurantNameInput.clear();
         });
 
         Button returnButton = new Button("Return");
-        returnButton.setStyle("-fx-font: 14 arial; -fx-text-fill: black;");
+        returnButton.setStyle("-fx-font: 14 arial; -fx-text-fill: white; -fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #ff9966, #ff5e62)");
+        returnButton.addEventHandler(MouseEvent.MOUSE_ENTERED, e -> returnButton.setEffect(new DropShadow()));
+        returnButton.addEventHandler(MouseEvent.MOUSE_EXITED, e -> returnButton.setEffect(null)); 
         returnButton.setOnAction(e -> mainApp.setScene(scene));
 
-        menuLayout.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #076585, #c7fbfc)");
+        menuLayout.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #2b5876, #4e4376)");
         menuLayout.getChildren().addAll(restaurantNameLabel, restaurantNameInput, submitButton, returnButton);
 
         return new Scene(menuLayout, 400, 600);
@@ -122,7 +140,7 @@ public class AdminMenu extends MemberMenu{
         menuLayout.setAlignment(Pos.CENTER);
 
         Label restaurantNameLabel = new Label("Restaurant Name:");
-        restaurantNameLabel.setStyle("-fx-font: 15 arial; -fx-text-fill: white;");
+        restaurantNameLabel.setStyle("-fx-font: 15 arial; -fx-text-fill: white; -fx-font-weight: bold;");
 
         TextField restaurantNameInput = new TextField();
         restaurantNameInput.setPrefHeight(30);
@@ -131,7 +149,7 @@ public class AdminMenu extends MemberMenu{
         restaurantNameInput.setStyle("-fx-font: 14 arial");
 
         Label menuItemLabel = new Label("Menu Item Name:");
-        menuItemLabel.setStyle("-fx-font: 15 arial; -fx-text-fill: white;");
+        menuItemLabel.setStyle("-fx-font: 15 arial; -fx-text-fill: white; -fx-font-weight: bold;");
 
         TextField menuItemInput = new TextField();
         menuItemInput.setPrefHeight(30);
@@ -140,7 +158,7 @@ public class AdminMenu extends MemberMenu{
         menuItemInput.setStyle("-fx-font: 14 arial");
 
         Label priceLabel = new Label("Price:");
-        priceLabel.setStyle("-fx-font: 15 arial; -fx-text-fill: white;");
+        priceLabel.setStyle("-fx-font: 15 arial; -fx-text-fill: white; -fx-font-weight: bold;");
     
         TextField priceInput = new TextField();
         priceInput.setPrefHeight(30);
@@ -149,7 +167,9 @@ public class AdminMenu extends MemberMenu{
         priceInput.setStyle("-fx-font: 14 arial");
 
         Button addItemButton = new Button("Add Menu Item");
-        addItemButton.setStyle("-fx-font: 14 arial; -fx-text-fill: black;");
+        addItemButton.setStyle("-fx-font: 14 arial; -fx-text-fill: white; -fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #ff9966, #ff5e62)");
+        addItemButton.addEventHandler(MouseEvent.MOUSE_ENTERED, e -> addItemButton.setEffect(new DropShadow()));
+        addItemButton.addEventHandler(MouseEvent.MOUSE_EXITED, e -> addItemButton.setEffect(null)); 
         addItemButton.setOnAction(e -> {
             handleAddMenu(restaurantNameInput.getText(), menuItemInput.getText(), priceInput.getText());
             menuItemInput.clear();
@@ -157,13 +177,15 @@ public class AdminMenu extends MemberMenu{
         });
 
         Button returnButton = new Button("Return");
-        returnButton.setStyle("-fx-font: 14 arial; -fx-text-fill: black;");
+        returnButton.setStyle("-fx-font: 14 arial; -fx-text-fill: white; -fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #ff9966, #ff5e62)");
+        returnButton.addEventHandler(MouseEvent.MOUSE_ENTERED, e -> returnButton.setEffect(new DropShadow()));
+        returnButton.addEventHandler(MouseEvent.MOUSE_EXITED, e -> returnButton.setEffect(null)); 
         returnButton.setOnAction(e -> {
             restaurantNameInput.clear();
             mainApp.setScene(mainApp.getScene(this.user.getNamaUser()));
         });
 
-        menuLayout.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #076585, #c7fbfc)");
+        menuLayout.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #2b5876, #4e4376)");
         menuLayout.getChildren().addAll(restaurantNameLabel, restaurantNameInput, menuItemLabel, menuItemInput, priceLabel, priceInput, addItemButton, returnButton);
 
         return new Scene(menuLayout, 400, 600);
@@ -179,7 +201,7 @@ public class AdminMenu extends MemberMenu{
         menuLayout.setAlignment(Pos.CENTER);
 
         Label restaurantNameLabel = new Label("Restaurant Name:");
-        restaurantNameLabel.setStyle("-fx-font: 15 arial; -fx-text-fill: white;");
+        restaurantNameLabel.setStyle("-fx-font: 15 arial; -fx-text-fill: white; -fx-font-weight: bold;");
 
         TextField restaurantNameInput = new TextField();
         restaurantNameInput.setPrefHeight(30);
@@ -188,7 +210,9 @@ public class AdminMenu extends MemberMenu{
         restaurantNameInput.setStyle("-fx-font: 14 arial");
 
         Button searchButton = new Button("Search");
-        searchButton.setStyle("-fx-font: 14 arial; -fx-text-fill: black;");
+        searchButton.setStyle("-fx-font: 14 arial; -fx-text-fill: white; -fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #ff9966, #ff5e62)");
+        searchButton.addEventHandler(MouseEvent.MOUSE_ENTERED, e -> searchButton.setEffect(new DropShadow()));
+        searchButton.addEventHandler(MouseEvent.MOUSE_EXITED, e -> searchButton.setEffect(null)); 
         searchButton.setOnAction(e -> {
             String name = restaurantNameInput.getText();
             menuItemsListView.getItems().clear();
@@ -205,20 +229,22 @@ public class AdminMenu extends MemberMenu{
         });
 
         Label menuLabel = new Label("Menu:");
-        menuLabel.setStyle("-fx-font: 15 arial; -fx-text-fill: white;");
+        menuLabel.setStyle("-fx-font: 15 arial; -fx-text-fill: white; -fx-font-weight: bold;");
 
         menuItemsListView.getItems().clear();
         menuItemsListView.setMaxHeight(300);
         menuItemsListView.setStyle("-fx-font: 14 arial; -fx-text-fill: black;");
 
         Button returnButton = new Button("Return");
-        returnButton.setStyle("-fx-font: 14 arial; -fx-text-fill: black;");
+        returnButton.setStyle("-fx-font: 14 arial; -fx-text-fill: white; -fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #ff9966, #ff5e62)");
+        returnButton.addEventHandler(MouseEvent.MOUSE_ENTERED, e -> returnButton.setEffect(new DropShadow()));
+        returnButton.addEventHandler(MouseEvent.MOUSE_EXITED, e -> returnButton.setEffect(null)); 
         returnButton.setOnAction(e -> {
             restaurantNameInput.clear();
             mainApp.setScene(mainApp.getScene(this.user.getNamaUser()));
         });
 
-        menuLayout.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #076585, #c7fbfc)");
+        menuLayout.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #2b5876, #4e4376)");
         menuLayout.getChildren().addAll(restaurantNameLabel, restaurantNameInput, searchButton, menuLabel, menuItemsListView, returnButton);
 
         return new Scene(menuLayout, 400, 600);
