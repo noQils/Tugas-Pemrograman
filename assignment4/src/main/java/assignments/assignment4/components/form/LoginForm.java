@@ -49,7 +49,7 @@ public class LoginForm {
         grid.setHgap(12);
 
         Label welcomeLabel = new Label("Welcome to DepeFood");
-        welcomeLabel.setStyle("-fx-font: 30 arial; -fx-text-fill: white; -fx-font-weight: bold");
+        welcomeLabel.setStyle("-fx-font: 30 arial; -fx-text-fill: white; -fx-font-weight: bold;");
         GridPane.setConstraints(welcomeLabel, 0, 15, 31, 5, HPos.CENTER, VPos.CENTER);
 
         Label nameLabel = new Label("Name");
