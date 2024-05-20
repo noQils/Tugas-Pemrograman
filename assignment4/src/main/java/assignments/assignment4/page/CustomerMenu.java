@@ -437,12 +437,14 @@ public class CustomerMenu extends MemberMenu{
                 showAlert("Error", "Payment Method Unavailabe", "You do not have this type of payment method, please select another payment method!", AlertType.ERROR);
                 return;
             }
+            CreditCardPayment creditPayment = (CreditCardPayment) paymentMethod;
             newBalance = paymentMethod.processPayment((long) totalPrice, userBalance);
             this.user.setSaldo(newBalance);
             order.getRestoran().addSaldo((long) itemsPrice);
             order.setOrderStatus();
             showAlert("Success", "Payment Successful", "Your transaction of Rp" + totalPrice + 
-                        " for order ID \"" + order.getOrderID() + "\" has been successfuly made!", AlertType.INFORMATION);
+                        " for order ID \"" + order.getOrderID() + "\" has been successfuly made!\n" + 
+                        "Admin cost: Rp" + creditPayment.countTransactionFee(totalPrice), AlertType.INFORMATION);
         }
         else if (selectedPaymentMethod.equals("Debit")) {
             if (paymentMethod.paymentType().equals("credit")){
