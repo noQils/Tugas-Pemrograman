@@ -7,11 +7,6 @@ import assignments.assignment3.systemCLI.CustomerSystemCLI;
 import assignments.assignment4.MainApp;
 import assignments.assignment4.page.MemberMenu;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -21,8 +16,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class BillPrinter {
     private Stage stage;

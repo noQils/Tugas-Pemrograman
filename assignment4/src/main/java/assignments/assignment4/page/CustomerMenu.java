@@ -11,13 +11,7 @@ import assignments.assignment3.systemCLI.CustomerSystemCLI;
 import assignments.assignment4.MainApp;
 import assignments.assignment4.components.BillPrinter;
 
-import javafx.collections.ArrayChangeListener;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.geometry.HPos;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
@@ -25,15 +19,9 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Shape;
 import javafx.stage.Stage;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class CustomerMenu extends MemberMenu{
     private Stage stage;
@@ -289,7 +277,7 @@ public class CustomerMenu extends MemberMenu{
         printButton.addEventHandler(MouseEvent.MOUSE_ENTERED, e -> printButton.setEffect(new DropShadow()));
         printButton.addEventHandler(MouseEvent.MOUSE_EXITED, e -> printButton.setEffect(null)); 
         printButton.setOnAction(e -> {
-            Scene billPrinterScene = new BillPrinter(stage, mainApp, this.user).getScene(orderIDInput.getText(), printBillScene);
+            Scene billPrinterScene = billPrinter.getScene(orderIDInput.getText(), printBillScene);
             if (billPrinterScene != null) mainApp.setScene(billPrinterScene);
         });
 
