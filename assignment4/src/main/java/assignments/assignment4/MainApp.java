@@ -58,6 +58,10 @@ public class MainApp extends Application {
         setUser(null); // Clear the current user
         setScene(getScene("Login")); // Switch to the login scene
     }
+    
+    public void exitWindow(){
+        window.close();
+    }
 
     public static void main(String[] args) {
         launch(args);

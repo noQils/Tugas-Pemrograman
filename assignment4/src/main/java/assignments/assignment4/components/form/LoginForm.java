@@ -75,15 +75,23 @@ public class LoginForm {
         GridPane.setConstraints(phoneInput, 9, 27, 24, 4, HPos.CENTER, VPos.CENTER);
 
         Button loginButton = new Button("Login");
-        loginButton.setPrefSize(100, 27);
+        loginButton.setPrefSize(112, 27);
         loginButton.setStyle("-fx-font: 14 arial; -fx-text-fill: white; -fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #ff9966, #ff5e62)");
         loginButton.addEventHandler(MouseEvent.MOUSE_ENTERED, e -> loginButton.setEffect(new DropShadow()));
         loginButton.addEventHandler(MouseEvent.MOUSE_EXITED, e -> loginButton.setEffect(null)); 
-        GridPane.setConstraints(loginButton, 10, 31, 11, 4, HPos.CENTER, VPos.CENTER);
+        GridPane.setConstraints(loginButton, 8, 31, 16, 4, HPos.CENTER, VPos.CENTER);
         loginButton.setOnAction(e -> handleLogin());
 
+        Button exitButton = new Button("Exit");
+        exitButton.setPrefSize(112, 27);
+        exitButton.setStyle("-fx-font: 14 arial; -fx-text-fill: white; -fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #ff5e62, #ff9966)");
+        exitButton.addEventHandler(MouseEvent.MOUSE_ENTERED, e -> exitButton.setEffect(new DropShadow()));
+        exitButton.addEventHandler(MouseEvent.MOUSE_EXITED, e -> exitButton.setEffect(null)); 
+        GridPane.setConstraints(exitButton, 18, 31, 16, 4, HPos.CENTER, VPos.CENTER);
+        exitButton.setOnAction(e -> mainApp.exitWindow());
+
         grid.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #2b5876, #524376)");
-        grid.getChildren().addAll(welcomeLabel, nameLabel, nameInput, phoneLabel, phoneInput, loginButton);
+        grid.getChildren().addAll(welcomeLabel, nameLabel, nameInput, phoneLabel, phoneInput, loginButton, exitButton);
 
         return new Scene(grid, 400, 600);
     }
